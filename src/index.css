@@ -1,0 +1,249 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource/press-start-2p";
+@import "@fontsource/vt323";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-display: 'Press Start 2P', ui-monospace, monospace;
+    --font-sans: 'VT323', ui-monospace, monospace;
+    --font-heading: var(--font-display);
+
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+
+    /* Egyptian palette, exposed as first-class utilities (bg-gold, text-lapis, etc.) */
+    --color-papyrus: var(--papyrus);
+    --color-sand: var(--sand);
+    --color-sand-dark: var(--sand-dark);
+    --color-gold: var(--gold);
+    --color-gold-dark: var(--gold-dark);
+    --color-lapis: var(--lapis);
+    --color-lapis-dark: var(--lapis-dark);
+    --color-turquoise: var(--turquoise);
+    --color-turquoise-dark: var(--turquoise-dark);
+    --color-terracotta: var(--terracotta);
+    --color-scarab: var(--scarab);
+    --color-basalt: var(--basalt);
+    --color-ink: var(--ink);
+
+    --color-difficulty-1: var(--difficulty-1);
+    --color-difficulty-2: var(--difficulty-2);
+    --color-difficulty-3: var(--difficulty-3);
+    --color-difficulty-4: var(--difficulty-4);
+    --color-difficulty-5: var(--difficulty-5);
+
+    /* Pixel art has no rounded corners or blur -- everything is stepped/hard-edged. */
+    --radius-sm: 0px;
+    --radius-md: 0px;
+    --radius-lg: 0px;
+    --radius-xl: 0px;
+    --radius-2xl: 0px;
+    --radius-3xl: 0px;
+    --radius-4xl: 0px;
+}
+
+:root {
+    /* "Desert Sun" -- daytime theme */
+    --papyrus: #f3e3b8;
+    --sand: #e8d5a0;
+    --sand-dark: #8b6f3e;
+    --gold: #c9932a;
+    --gold-dark: #8a6d1f;
+    --lapis: #2b5a8c;
+    --lapis-dark: #163a5c;
+    --turquoise: #1b7a6e;
+    --turquoise-dark: #0f4f47;
+    --terracotta: #a63a22;
+    --scarab: #3e7c4a;
+    --basalt: #241a10;
+    --ink: #2b1d0e;
+
+    --difficulty-1: #3e8c4a;
+    --difficulty-2: #7c9c3e;
+    --difficulty-3: #d4a017;
+    --difficulty-4: #c1442d;
+    --difficulty-5: #7a1f3d;
+
+    --background: var(--papyrus);
+    --foreground: var(--ink);
+    --card: var(--sand);
+    --card-foreground: var(--ink);
+    --popover: var(--sand);
+    --popover-foreground: var(--ink);
+    --primary: var(--gold);
+    --primary-foreground: var(--ink);
+    --secondary: var(--lapis);
+    --secondary-foreground: var(--papyrus);
+    --muted: #e3ce98;
+    --muted-foreground: #6b5530;
+    --accent: var(--turquoise);
+    --accent-foreground: var(--papyrus);
+    --destructive: var(--terracotta);
+    --border: var(--sand-dark);
+    --input: var(--sand-dark);
+    --ring: var(--gold);
+    --radius: 0px;
+    --sidebar: var(--sand);
+    --sidebar-foreground: var(--ink);
+    --sidebar-primary: var(--gold);
+    --sidebar-primary-foreground: var(--ink);
+    --sidebar-accent: var(--turquoise);
+    --sidebar-accent-foreground: var(--papyrus);
+    --sidebar-border: var(--sand-dark);
+    --sidebar-ring: var(--gold);
+
+    --pixel-shadow: var(--ink);
+}
+
+.dark {
+    /* "Torch-lit Tomb" -- default game theme */
+    --papyrus: #f3e3b8;
+    --sand: #2a1f13;
+    --sand-dark: #7a5a22;
+    --gold: #eec14b;
+    --gold-dark: #b5893a;
+    --lapis: #4a86c2;
+    --lapis-dark: #2b5a8c;
+    --turquoise: #3fc2ac;
+    --turquoise-dark: #1b7a6e;
+    --terracotta: #e2643f;
+    --scarab: #5cb56a;
+    --basalt: #120c07;
+    --ink: #f3e3b8;
+
+    --difficulty-1: #5cb56a;
+    --difficulty-2: #a3c25a;
+    --difficulty-3: #eec14b;
+    --difficulty-4: #e2643f;
+    --difficulty-5: #b8497a;
+
+    --background: var(--basalt);
+    --foreground: var(--papyrus);
+    --card: var(--sand);
+    --card-foreground: var(--papyrus);
+    --popover: var(--sand);
+    --popover-foreground: var(--papyrus);
+    --primary: var(--gold);
+    --primary-foreground: #1a1109;
+    --secondary: var(--lapis-dark);
+    --secondary-foreground: var(--papyrus);
+    --muted: #241a10;
+    --muted-foreground: #b79a6b;
+    --accent: var(--turquoise-dark);
+    --accent-foreground: var(--papyrus);
+    --destructive: #c1442d;
+    --border: var(--sand-dark);
+    --input: var(--sand-dark);
+    --ring: var(--gold);
+    --sidebar: var(--sand);
+    --sidebar-foreground: var(--papyrus);
+    --sidebar-primary: var(--gold);
+    --sidebar-primary-foreground: #1a1109;
+    --sidebar-accent: var(--turquoise-dark);
+    --sidebar-accent-foreground: var(--papyrus);
+    --sidebar-border: var(--sand-dark);
+    --sidebar-ring: var(--gold);
+
+    --pixel-shadow: #000000;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    }
+  body {
+    @apply bg-background text-foreground;
+    image-rendering: pixelated;
+    }
+  html {
+    @apply font-sans;
+    font-size: 20px;
+    }
+  ::selection {
+    background: var(--gold);
+    color: var(--ink);
+  }
+}
+
+@layer utilities {
+  /* Chunky, hard-edged "8-bit" borders -- an inset bevel instead of a soft box-shadow blur. */
+  .pixel-border {
+    border-width: 4px;
+    border-style: solid;
+    border-color: var(--border);
+    box-shadow:
+      inset 2px 2px 0 0 color-mix(in oklab, var(--foreground) 12%, transparent),
+      inset -2px -2px 0 0 color-mix(in oklab, black 25%, transparent);
+  }
+
+  /* Stepped/notched corners, simulating a pixel-drawn frame instead of border-radius. */
+  .pixel-corners {
+    clip-path: polygon(
+      6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px),
+      calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px), 0 6px
+    );
+  }
+  .pixel-corners-sm {
+    clip-path: polygon(
+      3px 0, calc(100% - 3px) 0, 100% 3px, 100% calc(100% - 3px),
+      calc(100% - 3px) 100%, 3px 100%, 0 calc(100% - 3px), 0 3px
+    );
+  }
+
+  /* Hard offset drop-shadow with zero blur -- the signature pixel-art "floating tile" look. */
+  .pixel-shadow {
+    box-shadow: 4px 4px 0 0 var(--pixel-shadow);
+  }
+  .pixel-shadow-sm {
+    box-shadow: 2px 2px 0 0 var(--pixel-shadow);
+  }
+
+  /* Press-and-release affordance for buttons/cards: shadow collapses as the element "sinks in". */
+  .pixel-pressable {
+    transition: transform 80ms steps(2), box-shadow 80ms steps(2);
+  }
+  .pixel-pressable:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0 0 0 0 var(--pixel-shadow) !important;
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .text-outline {
+    -webkit-text-stroke: 1px var(--ink);
+  }
+}
