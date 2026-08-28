@@ -21,16 +21,13 @@ export function DifficultyBadge({ difficulty, showLabel = true, className }: Dif
             style={{
               fill: pip <= difficulty ? color : "transparent",
               color: pip <= difficulty ? color : "var(--muted-foreground)",
-              opacity: pip <= difficulty ? 1 : 0.5,
+              opacity: pip <= difficulty ? 1 : 0.4,
             }}
           />
         ))}
       </div>
       {showLabel && (
-        <span
-          className="font-display text-[9px] tracking-wide uppercase"
-          style={{ color }}
-        >
+        <span className="font-heading text-sm font-semibold" style={{ color }}>
           {label}
         </span>
       )}

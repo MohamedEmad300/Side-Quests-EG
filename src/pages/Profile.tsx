@@ -1,7 +1,7 @@
 import { useMemo, type ReactNode } from "react"
 import { Trophy, Compass, Users, Calendar } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { PixelAvatar } from "@/components/PixelAvatar"
+import { DoodleAvatar } from "@/components/DoodleAvatar"
 import { QuestCard } from "@/components/quests/QuestCard"
 import { useQuests } from "@/lib/use-quests"
 import { useQuestProgress } from "@/lib/use-quest-progress"
@@ -35,15 +35,15 @@ export function Profile() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="pixel-border pixel-corners pixel-shadow flex flex-col gap-6 bg-card p-5 sm:flex-row sm:items-center sm:p-6">
-        <div className="pixel-corners size-24 shrink-0 self-center border-4 border-ink sm:self-auto">
-          <PixelAvatar seed={CURRENT_USER.username} />
+      <div className="paper-panel flex flex-col gap-6 p-5 sm:flex-row sm:items-center sm:p-6">
+        <div className="size-24 shrink-0 self-center rounded-full border-4 border-card ring-2 ring-border sm:self-auto">
+          <DoodleAvatar seed={CURRENT_USER.username} />
         </div>
         <div className="flex flex-1 flex-col gap-2 text-center sm:text-left">
-          <h1 className="font-display text-base tracking-wide sm:text-lg">
+          <h1 className="font-display text-4xl leading-tight sm:text-5xl">
             {CURRENT_USER.username}
           </h1>
-          <span className="font-display text-[10px] tracking-wide text-gold uppercase">
+          <span className="font-heading text-sm font-semibold text-terracotta">
             {CURRENT_USER.title}
           </span>
           <p className="text-lg text-muted-foreground">{CURRENT_USER.bio}</p>
@@ -56,17 +56,17 @@ export function Profile() {
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         <StatTile
-          icon={<Trophy className="size-5 text-gold" />}
+          icon={<Trophy className="size-5 text-terracotta" />}
           label="Quests completed"
           value={completedQuests.length}
         />
         <StatTile
-          icon={<Compass className="size-5 text-lapis" />}
+          icon={<Compass className="size-5 text-teal" />}
           label="Active quests"
           value={activeQuests.length}
         />
         <StatTile
-          icon={<Users className="size-5 text-turquoise" />}
+          icon={<Users className="size-5 text-olive" />}
           label="Party quests joined"
           value={partyQuestsJoined}
         />
@@ -116,10 +116,10 @@ function StatTile({
   value: number
 }) {
   return (
-    <div className="pixel-border pixel-corners flex items-center gap-3 bg-card p-4">
+    <div className="paper-panel flex items-center gap-3 p-4">
       {icon}
       <div className="flex flex-col">
-        <span className="font-display text-lg leading-none">{value}</span>
+        <span className="font-display text-3xl leading-none">{value}</span>
         <span className="text-sm text-muted-foreground">{label}</span>
       </div>
     </div>
@@ -128,7 +128,7 @@ function StatTile({
 
 function EmptyState({ message }: { message: string }) {
   return (
-    <div className="pixel-border pixel-corners flex flex-col items-center gap-2 bg-card py-16 text-center">
+    <div className="paper-panel flex flex-col items-center gap-2 py-16 text-center">
       <p className="text-lg text-muted-foreground">{message}</p>
     </div>
   )

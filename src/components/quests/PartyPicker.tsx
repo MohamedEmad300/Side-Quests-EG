@@ -10,7 +10,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { PixelAvatar } from "@/components/PixelAvatar"
+import { DoodleAvatar } from "@/components/DoodleAvatar"
 import { MOCK_FRIENDS } from "@/lib/mock-data"
 import { cn } from "@/lib/utils"
 
@@ -59,18 +59,18 @@ export function PartyPicker({ memberIds, onSave }: PartyPickerProps) {
                 type="button"
                 onClick={() => toggle(friend.id)}
                 className={cn(
-                  "pixel-corners-sm flex items-center gap-3 border-2 px-3 py-2 text-left transition-colors",
+                  "flex items-center gap-3 rounded-xl border-2 px-3 py-2 text-left transition-colors",
                   isSelected
-                    ? "border-ink bg-primary/20"
+                    ? "border-primary bg-primary/15"
                     : "border-transparent hover:bg-muted"
                 )}
               >
                 <div className="relative size-8 shrink-0">
-                  <PixelAvatar seed={friend.username} />
+                  <DoodleAvatar seed={friend.username} />
                   <span
                     className={cn(
-                      "absolute -right-0.5 -bottom-0.5 size-2 border border-ink",
-                      friend.status === "online" ? "bg-scarab" : "bg-muted-foreground"
+                      "absolute -right-0.5 -bottom-0.5 size-2.5 rounded-full border-2 border-card",
+                      friend.status === "online" ? "bg-olive" : "bg-muted-foreground"
                     )}
                   />
                 </div>
