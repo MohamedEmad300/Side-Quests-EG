@@ -17,7 +17,7 @@ function Avatar({
       data-slot="avatar"
       data-size={size}
       className={cn(
-        "group/avatar pixel-corners-sm relative flex size-9 shrink-0 border-2 border-ink select-none data-[size=lg]:size-12 data-[size=sm]:size-7",
+        "group/avatar relative flex size-9 shrink-0 rounded-full border-2 border-card ring-1 ring-border select-none data-[size=lg]:size-12 data-[size=sm]:size-7",
         className
       )}
       {...props}
@@ -33,7 +33,7 @@ function AvatarImage({
     <AvatarPrimitive.Image
       data-slot="avatar-image"
       className={cn(
-        "aspect-square size-full object-cover [image-rendering:pixelated]",
+        "aspect-square size-full rounded-full object-cover",
         className
       )}
       {...props}
@@ -49,7 +49,7 @@ function AvatarFallback({
     <AvatarPrimitive.Fallback
       data-slot="avatar-fallback"
       className={cn(
-        "flex size-full items-center justify-center bg-muted font-display text-[10px] text-muted-foreground group-data-[size=sm]/avatar:text-[8px]",
+        "flex size-full items-center justify-center rounded-full bg-muted font-heading text-sm text-muted-foreground group-data-[size=sm]/avatar:text-xs",
         className
       )}
       {...props}
@@ -62,7 +62,7 @@ function AvatarBadge({ className, ...props }: React.ComponentProps<"span">) {
     <span
       data-slot="avatar-badge"
       className={cn(
-        "pixel-corners-sm absolute -right-0.5 -bottom-0.5 z-10 inline-flex items-center justify-center border border-ink bg-primary text-primary-foreground bg-blend-color select-none",
+        "absolute -right-0.5 -bottom-0.5 z-10 inline-flex items-center justify-center rounded-full border-2 border-card bg-primary text-primary-foreground bg-blend-color select-none",
         "group-data-[size=sm]/avatar:size-2 group-data-[size=sm]/avatar:[&>svg]:hidden",
         "group-data-[size=default]/avatar:size-2.5 group-data-[size=default]/avatar:[&>svg]:size-2",
         "group-data-[size=lg]/avatar:size-3 group-data-[size=lg]/avatar:[&>svg]:size-2",

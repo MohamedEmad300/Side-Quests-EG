@@ -9,7 +9,7 @@ interface QuestTypeBadgeProps {
 export function QuestTypeBadge({ quest }: QuestTypeBadgeProps) {
   if (quest.type === "solo") {
     return (
-      <Badge variant="outline" className="border-lapis text-lapis">
+      <Badge variant="outline" className="border-teal text-teal">
         <User className="size-3" />
         Solo
       </Badge>
@@ -17,7 +17,7 @@ export function QuestTypeBadge({ quest }: QuestTypeBadgeProps) {
   }
 
   return (
-    <Badge variant="outline" className="border-turquoise text-turquoise">
+    <Badge variant="outline" className="border-terracotta text-terracotta">
       <Users className="size-3" />
       Party of {quest.recommendedPartySize ?? 2}
     </Badge>

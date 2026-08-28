@@ -42,7 +42,7 @@ export function QuestBoard() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="font-display text-lg tracking-wide text-gold sm:text-xl">
+        <h1 className="font-display text-4xl leading-tight text-terracotta sm:text-5xl">
           The Quest Board
         </h1>
         <p className="mt-2 text-lg text-muted-foreground">
@@ -50,7 +50,7 @@ export function QuestBoard() {
         </p>
       </div>
 
-      <div className="pixel-border pixel-corners bg-card p-4">
+      <div className="paper-panel p-4">
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-3 sm:flex-row">
             <div className="relative flex-1">
@@ -79,7 +79,7 @@ export function QuestBoard() {
 
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex flex-col gap-1.5">
-              <span className="font-display text-[9px] tracking-wide text-muted-foreground uppercase">
+              <span className="font-heading text-sm font-semibold text-muted-foreground">
                 Difficulty
               </span>
               <ToggleGroup
@@ -96,12 +96,12 @@ export function QuestBoard() {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <span className="font-display text-[9px] tracking-wide text-muted-foreground uppercase">
+              <span className="font-heading text-sm font-semibold text-muted-foreground">
                 Type
               </span>
               <ToggleGroup type="multiple" value={types} onValueChange={setTypes}>
                 {(["solo", "party"] as QuestType[]).map((t) => (
-                  <ToggleGroupItem key={t} value={t} size="sm">
+                  <ToggleGroupItem key={t} value={t} size="sm" className="capitalize">
                     {t}
                   </ToggleGroupItem>
                 ))}
@@ -112,8 +112,8 @@ export function QuestBoard() {
       </div>
 
       {filtered.length === 0 ? (
-        <div className="pixel-border pixel-corners flex flex-col items-center gap-2 bg-card py-16 text-center">
-          <p className="font-display text-xs text-muted-foreground">No quests found</p>
+        <div className="paper-panel flex flex-col items-center gap-2 py-16 text-center">
+          <p className="font-heading text-base font-semibold text-muted-foreground">No quests found</p>
           <p className="text-lg text-muted-foreground">Try loosening your filters.</p>
         </div>
       ) : (

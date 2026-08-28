@@ -3,7 +3,7 @@ import { useTheme } from "next-themes"
 import { Compass, Plus, Sun, Moon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { PixelAvatar } from "@/components/PixelAvatar"
+import { DoodleAvatar } from "@/components/DoodleAvatar"
 import { CURRENT_USER } from "@/lib/mock-data"
 
 const NAV_LINKS = [
@@ -15,12 +15,12 @@ export function Navbar() {
   const { resolvedTheme, setTheme } = useTheme()
 
   return (
-    <header className="pixel-border sticky top-0 z-40 border-x-0 border-t-0 bg-card">
+    <header className="paper-border sticky top-0 z-40 border-x-0 border-t-0 bg-card/95 backdrop-blur-sm">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
         <NavLink to="/" className="flex shrink-0 items-center gap-2">
-          <Compass className="size-6 text-gold" />
-          <span className="font-display text-xs tracking-wide text-foreground sm:text-sm">
-            Side Quests <span className="text-gold">EG</span>
+          <Compass className="size-7 text-terracotta" />
+          <span className="font-display text-2xl leading-none text-foreground sm:text-3xl">
+            Side Quests <span className="text-terracotta">EG</span>
           </span>
         </NavLink>
 
@@ -32,8 +32,8 @@ export function Navbar() {
               end={link.end}
               className={({ isActive }) =>
                 cn(
-                  "hidden font-display text-[9px] tracking-wide uppercase transition-colors sm:inline-flex sm:items-center sm:gap-1.5 sm:px-2 sm:py-2",
-                  isActive ? "text-gold" : "text-muted-foreground hover:text-foreground"
+                  "hidden rounded-lg font-heading text-sm font-semibold transition-colors sm:inline-flex sm:items-center sm:gap-1.5 sm:px-3 sm:py-2",
+                  isActive ? "text-terracotta" : "text-muted-foreground hover:text-foreground"
                 )
               }
             >
@@ -58,7 +58,7 @@ export function Navbar() {
           </Button>
 
           <NavLink to="/profile" aria-label="Your profile" className="ml-1 size-9 shrink-0">
-            <PixelAvatar seed={CURRENT_USER.username} />
+            <DoodleAvatar seed={CURRENT_USER.username} />
           </NavLink>
         </nav>
       </div>
