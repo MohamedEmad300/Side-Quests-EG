@@ -93,7 +93,7 @@ export function CreateQuest() {
   return (
     <div className="mx-auto flex max-w-2xl flex-col gap-6">
       <div>
-        <h1 className="font-display text-lg tracking-wide text-gold sm:text-xl">
+        <h1 className="font-display text-4xl leading-tight text-terracotta sm:text-5xl">
           Post a New Quest
         </h1>
         <p className="mt-2 text-lg text-muted-foreground">
@@ -101,7 +101,7 @@ export function CreateQuest() {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="pixel-border pixel-corners flex flex-col gap-6 bg-card p-5 sm:p-6">
+      <form onSubmit={handleSubmit} className="paper-panel flex flex-col gap-6 p-5 sm:p-6">
         <div className="flex flex-col gap-2">
           <Label htmlFor="title">Quest title</Label>
           <Input
@@ -176,7 +176,7 @@ export function CreateQuest() {
               ))}
             </div>
             <span
-              className="font-display text-[10px] tracking-wide uppercase"
+              className="font-heading text-sm font-semibold"
               style={{ color: DIFFICULTY_LEVELS[difficulty].color }}
             >
               {DIFFICULTY_LEVELS[difficulty].label}
@@ -215,12 +215,12 @@ export function CreateQuest() {
           <Label>Pictures (optional)</Label>
           <div className="flex flex-wrap gap-3">
             {images.map((src, i) => (
-              <div key={i} className="pixel-corners-sm relative size-20 border-2 border-ink">
-                <img src={src} alt="" className="size-full object-cover [image-rendering:pixelated]" />
+              <div key={i} className="relative size-20 overflow-hidden rounded-xl border border-border">
+                <img src={src} alt="" className="size-full object-cover" />
                 <button
                   type="button"
                   onClick={() => setImages((prev) => prev.filter((_, idx) => idx !== i))}
-                  className="pixel-corners-sm absolute -top-2 -right-2 flex size-5 items-center justify-center border-2 border-ink bg-destructive text-papyrus"
+                  className="absolute -top-2 -right-2 flex size-5 items-center justify-center rounded-full border-2 border-card bg-destructive text-primary-foreground"
                   aria-label="Remove image"
                 >
                   <X className="size-3" />
@@ -232,11 +232,11 @@ export function CreateQuest() {
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
                 className={cn(
-                  "pixel-corners-sm flex size-20 flex-col items-center justify-center gap-1 border-2 border-dashed border-border text-muted-foreground transition-colors hover:border-ring hover:text-foreground"
+                  "flex size-20 flex-col items-center justify-center gap-1 rounded-xl border-2 border-dashed border-border text-muted-foreground transition-colors hover:border-ring hover:text-foreground"
                 )}
               >
                 <ImagePlus className="size-5" />
-                <span className="text-[10px]">Add</span>
+                <span className="text-xs">Add</span>
               </button>
             )}
           </div>
@@ -252,7 +252,7 @@ export function CreateQuest() {
             }}
           />
           <p className="text-sm text-muted-foreground">
-            Up to {MAX_IMAGES} pictures. No photo? We'll generate pixel-art cover art instead.
+            Up to {MAX_IMAGES} pictures. No photo? We'll generate postcard cover art instead.
           </p>
         </div>
 

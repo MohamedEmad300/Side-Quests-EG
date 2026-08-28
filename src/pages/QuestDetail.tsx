@@ -3,8 +3,8 @@ import { toast } from "sonner"
 import { MapPin, ArrowLeft, Flag, CheckCircle2, RotateCcw, Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { PixelScene } from "@/components/PixelScene"
-import { PixelAvatar } from "@/components/PixelAvatar"
+import { Postcard } from "@/components/Postcard"
+import { DoodleAvatar } from "@/components/DoodleAvatar"
 import { DifficultyBadge } from "@/components/quests/DifficultyBadge"
 import { QuestTypeBadge } from "@/components/quests/QuestTypeBadge"
 import { PartyPicker } from "@/components/quests/PartyPicker"
@@ -19,8 +19,8 @@ export function QuestDetail() {
 
   if (!quest) {
     return (
-      <div className="pixel-border pixel-corners flex flex-col items-center gap-3 bg-card py-16 text-center">
-        <p className="font-display text-xs">Quest not found</p>
+      <div className="paper-panel flex flex-col items-center gap-3 py-16 text-center">
+        <p className="font-heading text-lg font-semibold">Quest not found</p>
         <Button asChild variant="outline" size="sm">
           <Link to="/">
             <ArrowLeft />
@@ -61,22 +61,18 @@ export function QuestDetail() {
     <div className="flex flex-col gap-6">
       <Link
         to="/"
-        className="flex w-fit items-center gap-1.5 font-display text-[9px] tracking-wide text-muted-foreground uppercase hover:text-foreground"
+        className="flex w-fit items-center gap-1.5 font-heading text-sm font-semibold text-muted-foreground hover:text-foreground"
       >
         <ArrowLeft className="size-3.5" />
         Quest board
       </Link>
 
-      <div className="pixel-border pixel-corners pixel-shadow overflow-hidden bg-card">
-        <div className="relative aspect-[21/9] w-full border-b-4 border-ink">
+      <div className="paper-panel overflow-hidden">
+        <div className="relative aspect-[21/9] w-full">
           {quest.images[0] ? (
-            <img
-              src={quest.images[0]}
-              alt=""
-              className="size-full object-cover [image-rendering:pixelated]"
-            />
+            <img src={quest.images[0]} alt="" className="size-full object-cover" />
           ) : (
-            <PixelScene seed={quest.id} />
+            <Postcard seed={quest.id} />
           )}
         </div>
 
@@ -85,13 +81,13 @@ export function QuestDetail() {
             <div className="flex flex-wrap items-center gap-2">
               <QuestTypeBadge quest={quest} />
               {status === "completed" && (
-                <span className="pixel-corners-sm flex items-center gap-1 border-2 border-ink bg-scarab px-2 py-1 font-display text-[9px] text-papyrus uppercase">
+                <span className="flex items-center gap-1 rounded-full bg-olive px-2.5 py-1 font-heading text-xs font-semibold text-primary-foreground">
                   <CheckCircle2 className="size-3.5" />
                   Completed
                 </span>
               )}
             </div>
-            <h1 className="font-display text-base tracking-wide sm:text-lg">{quest.title}</h1>
+            <h1 className="font-display text-4xl leading-tight sm:text-5xl">{quest.title}</h1>
             <div className="flex items-center gap-1.5 text-lg text-muted-foreground">
               <MapPin className="size-4 shrink-0" />
               {quest.location.name}, {quest.location.region}
@@ -105,7 +101,7 @@ export function QuestDetail() {
 
           <p className="text-sm text-muted-foreground">
             Posted by{" "}
-            <span className="font-display text-[10px] tracking-wide text-foreground uppercase">
+            <span className="font-heading text-sm font-semibold text-foreground">
               {getUsernameById(quest.createdBy)}
             </span>
           </p>
@@ -115,15 +111,15 @@ export function QuestDetail() {
               <Separator />
               <div className="flex flex-col gap-3">
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <h2 className="flex items-center gap-2 font-display text-[10px] tracking-wide uppercase">
-                    <Users className="size-4 text-turquoise" />
+                  <h2 className="flex items-center gap-2 font-heading text-base font-semibold">
+                    <Users className="size-4 text-teal" />
                     Your party
                   </h2>
                   <span
                     className={
                       partySize >= recommended
-                        ? "font-display text-[9px] text-scarab uppercase"
-                        : "font-display text-[9px] text-muted-foreground uppercase"
+                        ? "font-heading text-sm font-semibold text-olive"
+                        : "font-heading text-sm font-semibold text-muted-foreground"
                     }
                   >
                     {partySize} / {recommended} recommended
@@ -133,14 +129,14 @@ export function QuestDetail() {
                 <div className="flex flex-wrap gap-3">
                   <div className="flex flex-col items-center gap-1">
                     <div className="size-11">
-                      <PixelAvatar seed={CURRENT_USER.username} />
+                      <DoodleAvatar seed={CURRENT_USER.username} />
                     </div>
                     <span className="text-xs text-muted-foreground">You</span>
                   </div>
                   {partyMemberIds.map((id) => (
                     <div key={id} className="flex flex-col items-center gap-1">
                       <div className="size-11">
-                        <PixelAvatar seed={getUsernameById(id)} />
+                        <DoodleAvatar seed={getUsernameById(id)} />
                       </div>
                       <span className="max-w-14 truncate text-xs text-muted-foreground">
                         {getUsernameById(id)}

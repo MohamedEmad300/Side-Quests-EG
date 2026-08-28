@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { MapPin, CheckCircle2 } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { PixelScene } from "@/components/PixelScene"
+import { Postcard } from "@/components/Postcard"
 import { DifficultyBadge } from "@/components/quests/DifficultyBadge"
 import { QuestTypeBadge } from "@/components/quests/QuestTypeBadge"
 import type { Quest } from "@/lib/types"
@@ -16,16 +16,16 @@ export function QuestCard({ quest, completed = false }: QuestCardProps) {
 
   return (
     <Link to={`/quests/${quest.id}`} className="block h-full">
-      <Card size="sm" className="pixel-pressable group/questcard h-full cursor-pointer gap-3 py-0 transition-transform hover:-translate-y-0.5">
-        <div className="relative aspect-[16/10] w-full overflow-hidden border-b-4 border-ink">
+      <Card size="sm" className="press-pop group/questcard h-full cursor-pointer gap-3 py-0 transition-transform hover:-translate-y-0.5">
+        <div className="relative aspect-[16/10] w-full overflow-hidden">
           {cover ? (
-            <img src={cover} alt="" className="size-full object-cover [image-rendering:pixelated]" />
+            <img src={cover} alt="" className="size-full object-cover" />
           ) : (
-            <PixelScene seed={quest.id} />
+            <Postcard seed={quest.id} />
           )}
           {completed && (
-            <div className="pixel-corners-sm pixel-shadow-sm absolute top-2 right-2 flex items-center gap-1 border-2 border-ink bg-scarab px-1.5 py-1 font-display text-[8px] tracking-wide text-papyrus uppercase">
-              <CheckCircle2 className="size-3" />
+            <div className="paper-shadow-sm absolute top-2 right-2 flex items-center gap-1 rounded-full bg-olive px-2.5 py-1 font-heading text-xs font-semibold text-primary-foreground">
+              <CheckCircle2 className="size-3.5" />
               Done
             </div>
           )}
