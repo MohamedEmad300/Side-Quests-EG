@@ -13,7 +13,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { useQuests } from "@/lib/use-quests"
 import { cn, slugify } from "@/lib/utils"
 import { CURRENT_USER } from "@/lib/mock-data"
@@ -22,8 +21,9 @@ import {
   EGYPT_REGIONS,
   type Difficulty,
   type EgyptRegion,
-  type QuestType,
 } from "@/lib/types"
+
+const DIFFICULTY_OPTIONS: Difficulty[] = [1, 2, 3, 4, 5, 6, 7]
 
 const MAX_IMAGES = 4
 
@@ -46,8 +46,7 @@ export function CreateQuest() {
   const [locationName, setLocationName] = useState("")
   const [region, setRegion] = useState<EgyptRegion | "">("")
   const [difficulty, setDifficulty] = useState<Difficulty>(1)
-  const [type, setType] = useState<QuestType>("solo")
-  const [recommendedPartySize, setRecommendedPartySize] = useState(2)
+  const [partySize, setPartySize] = useState(1)
   const [images, setImages] = useState<string[]>([])
 
   const canSubmit =
@@ -78,8 +77,7 @@ export function CreateQuest() {
       images,
       location: { name: locationName.trim(), region },
       difficulty,
-      type,
-      recommendedPartySize: type === "party" ? recommendedPartySize : undefined,
+      partySize,
       createdBy: CURRENT_USER.id,
       createdAt: new Date().toISOString(),
     })
@@ -156,7 +154,7 @@ export function CreateQuest() {
           <Label>Difficulty grade</Label>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1">
-              {([1, 2, 3, 4, 5] as Difficulty[]).map((d) => (
+              {DIFFICULTY_OPTIONS.map((d) => (
                 <button
                   key={d}
                   type="button"
@@ -165,7 +163,7 @@ export function CreateQuest() {
                   className="p-1"
                 >
                   <Triangle
-                    className="size-5"
+                    className="size-4"
                     style={{
                       fill: d <= difficulty ? DIFFICULTY_LEVELS[difficulty].color : "transparent",
                       color: d <= difficulty ? DIFFICULTY_LEVELS[difficulty].color : "var(--muted-foreground)",
@@ -179,37 +177,24 @@ export function CreateQuest() {
               className="font-heading text-sm font-semibold"
               style={{ color: DIFFICULTY_LEVELS[difficulty].color }}
             >
-              {DIFFICULTY_LEVELS[difficulty].label}
+              {DIFFICULTY_LEVELS[difficulty].rank}-Rank &middot; {DIFFICULTY_LEVELS[difficulty].label}
             </span>
           </div>
         </div>
 
         <div className="flex flex-col gap-2">
-          <Label>Quest type</Label>
-          <ToggleGroup
-            type="single"
-            value={type}
-            onValueChange={(v) => v && setType(v as QuestType)}
-          >
-            <ToggleGroupItem value="solo">Solo</ToggleGroupItem>
-            <ToggleGroupItem value="party">Party</ToggleGroupItem>
-          </ToggleGroup>
+          <Label htmlFor="party-size">Recommended party size</Label>
+          <Input
+            id="party-size"
+            type="number"
+            min={1}
+            max={100}
+            value={partySize}
+            onChange={(e) => setPartySize(Math.min(100, Math.max(1, Number(e.target.value) || 1)))}
+            className="w-28"
+          />
+          <p className="text-sm text-muted-foreground">1 means a solo quest.</p>
         </div>
-
-        {type === "party" && (
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="party-size">Recommended party size</Label>
-            <Input
-              id="party-size"
-              type="number"
-              min={2}
-              max={8}
-              value={recommendedPartySize}
-              onChange={(e) => setRecommendedPartySize(Number(e.target.value) || 2)}
-              className="w-28"
-            />
-          </div>
-        )}
 
         <div className="flex flex-col gap-2">
           <Label>Pictures (optional)</Label>

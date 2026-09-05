@@ -70,6 +70,8 @@
     --color-difficulty-3: var(--difficulty-3);
     --color-difficulty-4: var(--difficulty-4);
     --color-difficulty-5: var(--difficulty-5);
+    --color-difficulty-6: var(--difficulty-6);
+    --color-difficulty-7: var(--difficulty-7);
 
     /* Soft, hand-cut paper corners -- generous and a little irregular-feeling. */
     --radius-sm: 0.5rem;
@@ -100,8 +102,10 @@
     --difficulty-1: var(--olive);
     --difficulty-2: var(--teal);
     --difficulty-3: var(--ochre);
-    --difficulty-4: var(--terracotta);
-    --difficulty-5: var(--rose);
+    --difficulty-4: var(--ochre-dark);
+    --difficulty-5: var(--terracotta);
+    --difficulty-6: var(--terracotta-dark);
+    --difficulty-7: var(--rose);
 
     --background: var(--paper);
     --foreground: var(--ink);
@@ -154,8 +158,10 @@
     --difficulty-1: var(--olive);
     --difficulty-2: var(--teal);
     --difficulty-3: var(--ochre);
-    --difficulty-4: var(--terracotta);
-    --difficulty-5: var(--rose);
+    --difficulty-4: var(--ochre-dark);
+    --difficulty-5: var(--terracotta);
+    --difficulty-6: var(--terracotta-dark);
+    --difficulty-7: var(--rose);
 
     --background: #1a130d;
     --foreground: var(--ink);

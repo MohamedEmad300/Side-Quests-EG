@@ -12,9 +12,11 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { QuestCard } from "@/components/quests/QuestCard"
 import { useQuests } from "@/lib/use-quests"
 import { useQuestProgress } from "@/lib/use-quest-progress"
-import { EGYPT_REGIONS, type Difficulty, type QuestType } from "@/lib/types"
+import { EGYPT_REGIONS, type Difficulty } from "@/lib/types"
 
-const DIFFICULTY_OPTIONS: Difficulty[] = [1, 2, 3, 4, 5]
+const DIFFICULTY_OPTIONS: Difficulty[] = [1, 2, 3, 4, 5, 6, 7]
+const TYPE_OPTIONS = ["solo", "party"] as const
+type TypeFilter = (typeof TYPE_OPTIONS)[number]
 
 export function QuestBoard() {
   const { quests } = useQuests()
@@ -34,7 +36,8 @@ export function QuestBoard() {
       const matchesRegion = region === "all" || quest.location.region === region
       const matchesDifficulty =
         difficulties.length === 0 || difficulties.includes(String(quest.difficulty))
-      const matchesType = types.length === 0 || types.includes(quest.type)
+      const questType: TypeFilter = quest.partySize <= 1 ? "solo" : "party"
+      const matchesType = types.length === 0 || types.includes(questType)
       return matchesSearch && matchesRegion && matchesDifficulty && matchesType
     })
   }, [quests, search, region, difficulties, types])
@@ -100,7 +103,7 @@ export function QuestBoard() {
                 Type
               </span>
               <ToggleGroup type="multiple" value={types} onValueChange={setTypes}>
-                {(["solo", "party"] as QuestType[]).map((t) => (
+                {TYPE_OPTIONS.map((t) => (
                   <ToggleGroupItem key={t} value={t} size="sm" className="capitalize">
                     {t}
                   </ToggleGroupItem>

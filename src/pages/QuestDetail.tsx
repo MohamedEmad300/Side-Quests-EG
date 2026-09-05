@@ -35,8 +35,8 @@ export function QuestDetail() {
   const questProgress = progress[questIdSafe]
   const status = questProgress?.status
   const partyMemberIds = questProgress?.partyMemberIds ?? []
-  const recommended = quest.recommendedPartySize ?? 2
-  const partySize = 1 + partyMemberIds.length
+  const recommended = quest.partySize
+  const currentPartySize = 1 + partyMemberIds.length
 
   function handleStart() {
     join(questIdSafe)
@@ -106,7 +106,7 @@ export function QuestDetail() {
             </span>
           </p>
 
-          {quest.type === "party" && status && (
+          {quest.partySize > 1 && status && (
             <>
               <Separator />
               <div className="flex flex-col gap-3">
@@ -117,12 +117,12 @@ export function QuestDetail() {
                   </h2>
                   <span
                     className={
-                      partySize >= recommended
+                      currentPartySize >= recommended
                         ? "font-heading text-sm font-semibold text-olive"
                         : "font-heading text-sm font-semibold text-muted-foreground"
                     }
                   >
-                    {partySize} / {recommended} recommended
+                    {currentPartySize} / {recommended} recommended
                   </span>
                 </div>
 
