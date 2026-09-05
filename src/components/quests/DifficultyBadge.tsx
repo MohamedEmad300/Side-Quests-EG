@@ -9,15 +9,15 @@ interface DifficultyBadgeProps {
 }
 
 export function DifficultyBadge({ difficulty, showLabel = true, className }: DifficultyBadgeProps) {
-  const { label, color } = DIFFICULTY_LEVELS[difficulty]
+  const { label, rank, color } = DIFFICULTY_LEVELS[difficulty]
 
   return (
     <div className={cn("flex items-center gap-2", className)}>
-      <div className="flex items-center gap-0.5" title={label}>
-        {[1, 2, 3, 4, 5].map((pip) => (
+      <div className="flex items-center gap-0.5" title={`${rank}-Rank -- ${label}`}>
+        {([1, 2, 3, 4, 5, 6, 7] as Difficulty[]).map((pip) => (
           <Triangle
             key={pip}
-            className="size-3"
+            className="size-2.5"
             style={{
               fill: pip <= difficulty ? color : "transparent",
               color: pip <= difficulty ? color : "var(--muted-foreground)",
@@ -28,7 +28,7 @@ export function DifficultyBadge({ difficulty, showLabel = true, className }: Dif
       </div>
       {showLabel && (
         <span className="font-heading text-sm font-semibold" style={{ color }}>
-          {label}
+          {rank}-Rank &middot; {label}
         </span>
       )}
     </div>

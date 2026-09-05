@@ -1,6 +1,4 @@
-export type Difficulty = 1 | 2 | 3 | 4 | 5
-
-export type QuestType = "solo" | "party"
+export type Difficulty = 1 | 2 | 3 | 4 | 5 | 6 | 7
 
 export interface QuestLocation {
   name: string
@@ -29,8 +27,8 @@ export interface Quest {
   images: string[]
   location: QuestLocation
   difficulty: Difficulty
-  type: QuestType
-  recommendedPartySize?: number
+  /** Recommended party size, 1-100. A size of 1 means the quest is solo. */
+  partySize: number
   createdBy: string
   createdAt: string
 }
@@ -61,11 +59,13 @@ export interface QuestProgress {
 
 export const DIFFICULTY_LEVELS: Record<
   Difficulty,
-  { label: string; color: string }
+  { label: string; rank: string; color: string }
 > = {
-  1: { label: "Papyrus Novice", color: "var(--difficulty-1)" },
-  2: { label: "Desert Wanderer", color: "var(--difficulty-2)" },
-  3: { label: "Tomb Explorer", color: "var(--difficulty-3)" },
-  4: { label: "Relic Raider", color: "var(--difficulty-4)" },
-  5: { label: "Pharaoh's Trial", color: "var(--difficulty-5)" },
+  1: { label: "First Steps", rank: "F", color: "var(--difficulty-1)" },
+  2: { label: "Wanderer", rank: "E", color: "var(--difficulty-2)" },
+  3: { label: "Explorer", rank: "D", color: "var(--difficulty-3)" },
+  4: { label: "Adventurer", rank: "C", color: "var(--difficulty-4)" },
+  5: { label: "Relic Raider", rank: "B", color: "var(--difficulty-5)" },
+  6: { label: "Trailblazer", rank: "A", color: "var(--difficulty-6)" },
+  7: { label: "Pharaoh's Trial", rank: "S", color: "var(--difficulty-7)" },
 }
